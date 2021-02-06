@@ -9,7 +9,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-struct HelpCommand: ParsableCommand {
+public struct HelpCommand: ParsableCommand {
   static var configuration = CommandConfiguration(
     commandName: "help",
     abstract: "Show subcommand help information.")
@@ -28,7 +28,7 @@ struct HelpCommand: ParsableCommand {
     commandStack = parser.commandStack(for: subcommands)
   }
   
-  func generateHelp() -> String {
+  public func generateHelp() -> String {
     return HelpGenerator(commandStack: commandStack).rendered()
   }
   
