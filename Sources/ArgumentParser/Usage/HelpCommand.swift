@@ -10,7 +10,7 @@
 //===----------------------------------------------------------------------===//
 
 public struct HelpCommand: ParsableCommand {
-  static var configuration = CommandConfiguration(
+  public static var configuration = CommandConfiguration(
     commandName: "help",
     abstract: "Show subcommand help information.")
   
@@ -18,9 +18,9 @@ public struct HelpCommand: ParsableCommand {
   
   private(set) var commandStack: [ParsableCommand.Type] = []
   
-  init() {}
+  public init() {}
   
-  mutating func run() throws {
+  public mutating func run() throws {
     throw CommandError(commandStack: commandStack, parserError: .helpRequested)
   }
   
@@ -36,7 +36,7 @@ public struct HelpCommand: ParsableCommand {
     case subcommands
   }
   
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self._subcommands = Argument(_parsedValue: .value(try container.decode([String].self, forKey: .subcommands)))
   }
